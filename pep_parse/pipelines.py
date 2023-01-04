@@ -12,8 +12,6 @@ from collections import defaultdict
 from pathlib import Path
 
 BASE_DIR = Path(__file__).parent.parent
-RESULTS_DIR = BASE_DIR / 'results'
-RESULTS_DIR.mkdir(exist_ok=True)
 
 
 class PepParsePipeline:
@@ -28,7 +26,7 @@ class PepParsePipeline:
     def close_spider(self, spider):
         now_formatted = dt.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
         with open(
-                RESULTS_DIR / f'status_summary_{now_formatted}.csv',
+                BASE_DIR / f'results/status_summary_{now_formatted}.csv',
                 mode='w', encoding='utf-8') as f:
             csv.writer(
                 f, dialect=csv.unix_dialect, quoting=csv.QUOTE_MINIMAL
