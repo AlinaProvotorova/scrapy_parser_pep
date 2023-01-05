@@ -2,8 +2,7 @@ import re
 import scrapy
 
 from pep_parse.items import PepParseItem
-
-PEPS_DOMAIN = 'peps.python.org'
+from pep_parse.settings import PEPS_DOMAIN
 
 
 class PepSpider(scrapy.Spider):
@@ -17,10 +16,10 @@ class PepSpider(scrapy.Spider):
 
     @staticmethod
     def parse_pep(response):
-        title = response.css('.page-title::text').get().split(' – ')
+        number, name = response.css('.page-title::text').get().split(' – ', 1)
         yield PepParseItem({
-            'number': re.sub(r'\D', r'', title[0]),
-            'name': title[1],
+            'number': re.sub(r'\D', r'', number),
+            'name': name,
             'status': response.css(
                 'dt:contains("Status") + dd abbr::text'
             ).get(),

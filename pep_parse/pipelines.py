@@ -16,7 +16,9 @@ RESULTS_DIR = BASE_DIR / 'results'
 
 
 class PepParsePipeline:
-    RESULTS_DIR.mkdir(exist_ok=True)
+
+    def __init__(self):
+        RESULTS_DIR.mkdir(exist_ok=True)
 
     def open_spider(self, spider):
         self.status_summary = defaultdict(int)
@@ -27,8 +29,11 @@ class PepParsePipeline:
 
     def close_spider(self, spider):
         now_formatted = dt.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-        with open(BASE_DIR / f'results/status_summary_{now_formatted}.csv',
-                  mode='w', encoding='utf-8') as f:
+        with open(
+                BASE_DIR / 'results' / f'status_summary_{now_formatted}.csv',
+                mode='w',
+                encoding='utf-8'
+        ) as f:
             csv.writer(
                 f, dialect=csv.unix_dialect, quoting=csv.QUOTE_MINIMAL
             ).writerows((
