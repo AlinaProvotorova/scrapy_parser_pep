@@ -3,10 +3,13 @@ import scrapy
 
 from pep_parse.items import PepParseItem
 
+PEPS_DOMAIN = 'peps.python.org'
+
 
 class PepSpider(scrapy.Spider):
     name = 'pep'
-    start_urls = ['https://peps.python.org/']
+    allowed_domains = [PEPS_DOMAIN]
+    start_urls = [f'https://{PEPS_DOMAIN}/']
 
     def parse(self, response):
         for pep_link in response.css('section#pep-content tr a::attr(href)'):

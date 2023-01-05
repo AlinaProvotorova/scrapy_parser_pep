@@ -1,4 +1,3 @@
-#### scrapy_parser_pep
 # Парсер PEP документов Python
 
 Парсер, который умеет:
@@ -6,7 +5,14 @@
 2. Собирать и записывать информацию о количестве статусов существующих в PEP;
 
 ### Запуск парсера:
-- Клонируйте проект
+- Клонируйте репозиторий scrapy_parser_pep командой в терминале:
+```commandline
+...$  git clone https://github.com/alinamalinapro/scrapy_parser_pep.git
+```
+- Активируйте виртуальное окружение командой:
+```commandline
+...scrapy_parser_pep$ virtualenv venv && .\venv\Scripts\activate
+```
 - Установите библиотеки командой:
 ```
 (venv) ...$ pip install -r requirements.txt
